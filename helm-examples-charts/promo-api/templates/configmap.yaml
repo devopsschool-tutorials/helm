@@ -1,0 +1,8 @@
+{{- include "librarychart.configmap" (list . "promo-api.configmap") -}}
+{{- define "promo-api.configmap" -}}
+data:
+  application.properties: |-
+    server.port=8080
+    prova=pippo
+
+{{- end -}}

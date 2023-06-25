@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+
+  labels:
+    app: {{ template "ghost.fullname" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    component: {{ .Values.statefulset.labels.component }}
+
+spec:
+  selector:
+    app: {{ template "ghost.fullname" . }}
+    component: {{ .Values.statefulset.labels.component }}
+
+  ports:
+    - name: {{ .Values.statefulset.ports.name }}
+      port: {{ .Values.statefulset.ports.port }}
+      protocol: {{ .Values.statefulset.ports.protocol }}
+      targetPort: {{ .Values.statefulset.ports.targetPort }}

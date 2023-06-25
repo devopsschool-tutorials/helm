@@ -1,0 +1,18 @@
+# Shows the helm build in objects one can use in the templates
+
+Notice: their name starts by a capital letter.
+
+Docs:
+ * https://helm.sh/docs/chart_template_guide/builtin_objects/
+---
+.Release
+{{ .Release | toYaml | indent 2 }}
+
+.Chart
+{{ .Chart | toYaml | indent 2 }}
+
+.Capabilities
+{{ .Capabilities | toYaml | indent 2 }}
+
+.Template
+{{ .Template | toYaml | indent 2 }}

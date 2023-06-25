@@ -1,0 +1,28 @@
+# Your goal is to call helm so that this file will print
+
+```
+key1: key1-default
+key2: key2-override1
+key3: key3-override2
+key4: key4-override3
+key5: key5-paramSet
+```
+There are valueOverride1.yaml, valueOverride2.yaml, and valueOverride3.yaml files
+
+Hints: 
+* to get the output run run `helm install --dry-run sample-release-name ./01-sample` to see rendered template
+* to see possible helm install parameters run `helm install --help`
+  note --values --set 
+  
+
+Result section:
+----
+key1: {{ .Values.settings.key1 }}
+key2: {{ .Values.settings.key2 }}
+key3: {{ .Values.settings.key3 }}
+key4: {{ .Values.settings.key4 }}
+key5: {{ .Values.settings.key5 }}
+---
+
+array:
+{{ .Values.array | toYaml }}

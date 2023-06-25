@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-node01
+provisioner: cluster.local/nfs-subdir-external-provisioner
+parameters:
+  server: nfs-node01.localhost
+  path: /mnt/k8snfsshare/volumes
+  readOnly: "false"

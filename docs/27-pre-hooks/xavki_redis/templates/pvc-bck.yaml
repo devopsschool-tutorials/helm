@@ -1,0 +1,18 @@
+{{- with .Values.redis_PersistentVolumeClaim_Bck }}
+{{- if eq .enabled true }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .name }}
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "0"
+spec:
+  storageClassName: {{ .storageClassName }}
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .size }}
+{{- end }}
+{{- end }}

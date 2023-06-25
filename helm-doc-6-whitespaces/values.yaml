@@ -1,0 +1,8 @@
+
+sampleValue: FILLED_FROM_VALUE
+
+
+multilineValue: |
+   Indentation on the first line sets the Indentation level
+      each line below with indentation more then the initial line is added to the block
+   initial spaces as set be the first line are removed

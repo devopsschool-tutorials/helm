@@ -1,0 +1,34 @@
+{{- if eq .Values.redis_bck true }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.redis_PersistentVolumeClaim_Bck.name }}
+  annotations:
+    "helm.sh/hook": pre-rollback
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "3"
+spec:
+  template:
+    spec:
+      containers:
+      - name: {{ .Values.redis_PersistentVolumeClaim_Bck.name }}
+        image: redis:alpine3.11
+        command:
+        - "/bin/sh"
+        - "-c"
+        args:
+        - "rm -f /data/dump.rdb && touch {{ .Release.Revision }}.restore && cp -f /bck/dump-{{ .Release.Revision }}.rdb /data/dump.rdb && sleep 30 && redis-server --daemonize yes --appendonly no && sleep 10 && rm -f appendonly.aof && sleep 30 && redis-cli BGREWRITEAOF && sleep 10"
+        volumeMounts:
+        - name: redis-bck
+          mountPath: /bck/
+        - name: data
+          mountPath: /data/
+      volumes:
+      - name: redis-bck
+        persistentVolumeClaim:
+          claimName: {{ .Values.redis_PersistentVolumeClaim_Bck.name }}
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ .Values.redis_PersistentVolumeClaim.name }}
+      restartPolicy: Never
+{{- end }}

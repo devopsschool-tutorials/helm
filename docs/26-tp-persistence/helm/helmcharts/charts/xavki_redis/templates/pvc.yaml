@@ -1,0 +1,13 @@
+{{- if eq .Values.redis_PersistentVolumeClaim.enabled true}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.redis_PersistentVolumeClaim.name }}
+spec:
+  storageClassName: {{ .Values.redis_PersistentVolumeClaim.storageClassName }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.redis_PersistentVolumeClaim.size }}
+{{- end }}

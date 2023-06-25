@@ -1,0 +1,1 @@
+helm install --set service.type=NodePort,ingress.enabled=true,ingress.hostname=wordpress.kub,wordpressUsername=admin,wordpressPassword=adminpassword,mariadb.mariadbRootPassword=secretpassword,mariadb.primary.persistence.existingClaim=wordpress-mysql,persistence.existingClaim=wordpress-wordpress,allowEmptyPassword=false bitnami/wordpress --generate-name

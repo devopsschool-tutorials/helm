@@ -1,0 +1,31 @@
+
+redis_port: ""
+redis_password: "mypassword"
+redis_image: "redis:5.0.4"
+redis_storageClass: redis
+redis_PersistentVolumeClaim:
+  enabled: true
+  name: redis
+  size: "1Gi"
+  mode: ReadWriteMany 
+redis_PersistentVolume:
+  enabled: true
+  name: redis
+  host: 192.168.12.20
+  directory: /srv/redis/
+  mode: ReadWriteMany 
+  size: "1Gi"
+redis_bck: true
+redis_storageClass_bck: redis-bck
+redis_PersistentVolumeClaim_Bck:
+  enabled: true
+  name: redis-bck
+  size: "1Gi"
+  mode: ReadWriteMany
+redis_PersistentVolume_bck:
+  enabled: true
+  name: redis-bck
+  host: 192.168.12.20
+  directory: /srv/redis-bck/
+  mode: ReadWriteMany
+  size: "1Gi"

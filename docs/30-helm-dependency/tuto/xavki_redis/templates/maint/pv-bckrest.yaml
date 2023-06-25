@@ -1,0 +1,20 @@
+{{- if eq .Values.redis_bck true }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.redis_PersistentVolume_bck.name }}
+  annotations:
+    "helm.sh/hook": pre-upgrade,pre-rollback
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  storageClassName: {{ .Values.redis_storageClass_bck }}
+  capacity:
+    storage: {{ .Values.redis_PersistentVolume_bck.size }}
+  accessModes:
+    - {{ .Values.redis_PersistentVolume_bck.mode }}
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: {{ .Values.redis_PersistentVolume_bck.host }}
+    path: {{ .Values.redis_PersistentVolume_bck.directory }}
+{{- end }}

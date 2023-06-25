@@ -1,0 +1,6 @@
+dependencies:
+- name: librarychart
+  repository: file://../library-chart
+  version: 0.1.0
+digest: sha256:d91c9931f8a7f8778bed282a94bd8fa8d0e383531e4aa7a83a60f8ec12be6653
+generated: "2021-07-17T16:52:42.245419+02:00"

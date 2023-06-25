@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: somestuff
+  drink: {{ .Values.favorite.drink | default (printf "%s-tea" "bob") }}
+  food: {{ .Values.favorite.food | upper | quote }}
+  toppings: |-
+    {{- range .Values.pizzaToppings }}
+    - {{ . | title | quote }}
+    {{- end }}
+  pods: |-
+    {{- range (lookup "v1" "Pod" "default" "").items }}
+    - {{ .metadata.name }}
+    {{- end }}

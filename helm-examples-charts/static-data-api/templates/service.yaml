@@ -1,0 +1,6 @@
+{{- include "librarychart.service" (list . "static-data-api.service") -}}
+{{- define "static-data-api.service" -}}
+metadata:
+  labels:
+    scrapeable: {{ .Values.service.scrapeable }}
+{{- end -}}

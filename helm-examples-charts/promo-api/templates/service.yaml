@@ -1,0 +1,6 @@
+{{- include "librarychart.service" (list . "promo-api.service") -}}
+{{- define "promo-api.service" -}}
+metadata:
+  labels:
+    scrapeable: {{ .Values.service.scrapeable }}
+{{- end -}}

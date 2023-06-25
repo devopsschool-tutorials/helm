@@ -1,0 +1,5 @@
+Redis :
+  Image : {{ .Values.redis_image }}
+  Port : {{ include "xavki_redis.port" . }}
+  Password : {{ .Values.redis_password }}
+  Internal DNS : redis-{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local

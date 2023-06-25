@@ -1,0 +1,36 @@
+apiVersion: v1
+entries:
+  xavki_api:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2021-06-10T19:50:37.484198965Z"
+    description: A Helm chart for Xavki API in Kubernetes
+    digest: b90f1314fb4af51089e48e8504a68da76ae94237ca82388bc1a6ee42950c85a8
+    name: xavki_api
+    type: application
+    urls:
+    - releases/xavki_api-0.1.0.tgz
+    version: 0.1.0
+  xavki_redis:
+  - apiVersion: v2
+    appVersion: 5.0.4
+    created: "2021-06-10T19:50:37.484421615Z"
+    description: A Helm chart for Redis
+    digest: 9267db8d11db63a3c8f0df3f9203352d0a3c08728eddc02f341596a6083c14e1
+    name: xavki_redis
+    type: application
+    urls:
+    - releases/xavki_redis-0.1.0.tgz
+    version: 0.1.0
+  xavki_redisinsight:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-06-10T19:50:37.484663451Z"
+    description: A Helm chart to deploy redis insight
+    digest: 72f4d8a643d2d25d905a5f887a6ccb8efa85d429196bdd58887383354b386097
+    name: xavki_redisinsight
+    type: application
+    urls:
+    - releases/xavki_redisinsight-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-06-10T19:50:37.483751151Z"

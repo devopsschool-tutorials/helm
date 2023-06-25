@@ -1,0 +1,46 @@
+# Run as helm template ./02-whitespaces
+
+Edit this file and see efect on rendered values by running:
+`helm install --dry-run sample-release-name ./02-whitespaces/`
+
+Difference between {{ "{{ "}} resp. {{ "}}" }} and
+ {{ "{{-" }} resp. {{ "-}}" }}, i.e., meaning of the `-`
+
+Docs:
+* https://pkg.go.dev/text/template#hdr-Text_and_spaces
+
+
+Citations:
+```cite
+if an action's left delimiter (by default {{ "\"{{\"" }}) is followed immediately by a minus sign and white space, 
+ all trailing white space is trimmed from the immediately preceding text. 
+...
+For this trimming, the definition of white space characters is the same as in Go: 
+  space, horizontal tab, carriage return, and newline.
+```
+
+Similarly to bash, the pipe `|` passes output=value of the previous expression to the other one.
+
+Tasks: 
+* try and see how the below content is rendered
+* understand why that happened, play with it to see what the - character is doing
+
+* play with indent / nindent funtion.  
+
+# Playground
+----
+    xxx
+
+    {{- .Values.sampleValue -}}
+
+    yyy
+
+---
+metadata:
+  {{- .Values.multilineValue }}
+
+metadata:
+  {{- .Values.multilineValue | indent 1 }}
+
+metadata:
+  {{- .Values.multilineValue | nindent 15 }}

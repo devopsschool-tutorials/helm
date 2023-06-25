@@ -1,0 +1,9 @@
+
+settings:
+  key4: "key4-override3"
+
+array:
+ - "item7-override3"
+ - "item8-override3"
+ - "item9-override3"
+ 

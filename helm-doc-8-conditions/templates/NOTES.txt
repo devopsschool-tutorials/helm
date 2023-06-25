@@ -1,0 +1,53 @@
+# Conditions
+
+In the  Go-lang templates there is a conditional block
+{{ "{{- if EXPRESSION IN PREFIX NOTATION" }}" }{
+....  
+{{ "{{- end }}" }}
+
+Docs:
+*  https://pkg.go.dev/text/template#hdr-Functions
+*  https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#operators-are-functions
+
+Notes:
+* Expression must be on a single line
+* Expressions are using prefix notations
+  Operators/Functions are: and or not, eq ne, lt, le, gt, ge
+
+The simpliest expression is the actual value.
+  e.g., {{ "{{- if .Values.emptyString }}" }}
+
+The value is converted to boolean using following rules:
+ Emptry string, empty list, empy dictionaries and numeric 0 are interpreted as False.
+
+ Non-emptry strings, non-empty lists and dicts, as well as non-0 nimeric values are treeted as True.
+
+See:
+
+emptyString:     {{ if .Values.emptyString -}}     TRUE {{- else -}} FALSE {{- end }}
+zero:            {{ if .Values.zero -}}            TRUE {{- else -}} FALSE {{- end }}
+emptyDict1:      {{ if .Values.emptyDict1 -}}      TRUE {{- else -}} FALSE {{- end }}
+emptyDict2:      {{ if .Values.emptyDict2 -}}      TRUE {{- else -}} FALSE {{- end }}
+emptyArray:      {{ if .Values.emptyArray -}}      TRUE {{- else -}} FALSE {{- end }}
+booleanFalse:    {{ if .Values.booleanFalse -}}    TRUE {{- else -}} FALSE {{- end }}
+ 
+
+nonEmptyString:  {{ if .Values.nonEmptyString -}}  TRUE {{- else -}} FALSE {{- end }}
+nonZero:         {{ if .Values.nonZero -}}         TRUE {{- else -}} FALSE {{- end }}
+nonEmptyDict:    {{ if .Values.nonEmptyDict -}}    TRUE {{- else -}} FALSE {{- end }}
+nonEmptyList:    {{ if .Values.nonEmptyList -}}    TRUE {{- else -}} FALSE {{- end }}
+booleanTrue:     {{ if .Values.booleanTrue -}}     TRUE {{- else -}} FALSE {{- end }}
+
+stringFalse:    {{ if .Values.stringFalse -}}    TRUE {{- else -}} FALSE {{- end }}
+stringZero:     {{ if .Values.stringZero -}}     TRUE {{- else -}} FALSE {{- end }}
+
+
+Goal:
+* Generate redis-secret only if redis is enabled and user did not provided own secret for redis.
+I.e., guard the below skeleton of the secret by the if block
+
+
+kind: Secret
+metadata: 
+  name: redis-secret
+

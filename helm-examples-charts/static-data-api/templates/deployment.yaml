@@ -1,0 +1,13 @@
+{{- include "librarychart.deployment" (list . "static-data-api.deployment") -}}
+{{- define "static-data-api.deployment" -}}
+spec:
+  template:
+    metadata:
+      annotations:
+        {{ if eq .Values.linkerd.enabled "true" }}
+        linkerd.io/inject: enabled
+        {{ end }}
+        ci-last-build: 2020-06-05_09:53:45
+        ci-last-commit: 5720aead493d3af2eab65017c93a289c580356db
+        ci-source-branch: NPPL-3820
+{{- end -}}

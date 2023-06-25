@@ -1,0 +1,15 @@
+favorite:
+  drink: coffee
+  food: burgers
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions
+cronjobs:
+  - output: one
+    schedule: "37 * * * *"
+  - output: two
+    schedule: "38 * * * *"
+  - output: three
+    schedule: "39 * * * *"

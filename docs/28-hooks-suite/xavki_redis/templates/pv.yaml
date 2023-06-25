@@ -1,0 +1,16 @@
+{{- if eq .Values.redis_PersistentVolumeClaim.enabled true }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.redis_PersitentVolume.name }}
+spec:
+  storageClassName: {{ .Values.redis_storageClass }}
+  capacity:
+    storage: {{ .Values.redis_PersitentVolume.size }}
+  accessModes:
+    - {{ .Values.redis_PersitentVolume.mode }}
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: {{ .Values.redis_PersitentVolume.host }}
+    path: {{ .Values.redis_PersitentVolume.directory }}
+{{- end }}

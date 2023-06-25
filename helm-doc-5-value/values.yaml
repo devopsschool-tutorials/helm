@@ -1,0 +1,12 @@
+
+settings:
+  key1: "key1-default"
+  key2: "key2-default"
+  key3: "key3-default"
+  key4: "key4-default"
+  key5: "key5-default"
+
+array:
+ - "item1-defautl"
+ - "item2-default"
+ - "item3-default" 

@@ -1,0 +1,119 @@
+{{- define "librarychart.deployment.tpl" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - {{ .Values.name }}
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+      - env:          
+        {{- range $key, $val := .Values.deployment.env }}
+          - name: {{ $key }}
+            value: {{ $val | quote }}
+        {{- end }}
+        envFrom:
+          - configMapRef:
+              name: default-config
+          - secretKeyRef:
+              name: default-secret
+        image: {{ .Values.deployment.image }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        name: {{ .Values.name }}
+        ports:
+        - containerPort: 8080
+          name: http
+        {{- range $key, $val := .Values.deployment.additionalPorts }}
+        - containerPort: {{ $val.containerPort }}
+          name: {{ $val.name }}
+        {{- end }}
+        livenessProbe:
+          failureThreshold: 7
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 40
+          periodSeconds: 30
+          timeoutSeconds: 6
+        readinessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 40
+          periodSeconds: 30
+          timeoutSeconds: 6
+        {{- if .Values.deployment.resources }}
+        resources:
+          {{- if .Values.deployment.resources.requests }}
+          requests:
+            memory: {{ .Values.deployment.resources.requests.memory | default "300Mi" | quote }}
+            cpu: {{ .Values.deployment.resources.requests.cpu | default "300m" | quote }}
+          {{- else}}
+          requests:
+            memory: "50Mi"
+            cpu: "10m"
+          {{- end}}
+          {{- if .Values.deployment.resources.limits }}
+          limits:
+            memory: {{ .Values.deployment.resources.limits.memory | default "1024Mi" | quote }}
+            cpu: {{ .Values.deployment.resources.limits.cpu | default "1" | quote }}
+          {{- else}}  
+          limits:
+            memory: "1024Mi"
+            cpu: "1"
+          {{- end }}
+        {{- else }}
+        resources:
+          requests:
+            memory: "300Mi"
+            cpu: "300m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1"
+        {{- end}} 
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 1000
+          capabilities:
+            drop:
+              - ALL
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
+      restartPolicy: Always
+      automountServiceAccountToken: false
+{{- end -}}
+{{- define "librarychart.deployment" -}}
+{{- include "librarychart.util.merge" (append . "librarychart.deployment.tpl") -}}
+{{- end -}}

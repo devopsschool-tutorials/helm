@@ -1,0 +1,8 @@
+{{- include "librarychart.configmap" (list . "static-data-api.configmap") -}}
+{{- define "static-data-api.configmap" -}}
+data:
+  application.properties: |-
+    server.port=8080
+    prova=pippo
+
+{{- end -}}

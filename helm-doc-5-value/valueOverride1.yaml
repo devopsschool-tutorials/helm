@@ -1,0 +1,8 @@
+
+settings:
+  key2: "key2-override1"
+  key4: "key4-override1"
+  key5: "key5-override1"
+
+array:
+ - "item4-override1"

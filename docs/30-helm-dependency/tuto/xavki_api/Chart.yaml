@@ -1,0 +1,16 @@
+apiVersion: v2
+name: xavki_api
+description: A Helm chart for Xavki API in Kubernetes
+
+type: application
+
+version: 0.1.1
+
+appVersion: "1.0"
+
+dependencies:
+- name: xavki_redis
+  version: "0.3.0"
+  repository: "file://../xavki_redis/"
+  condition: redis.enabled
+

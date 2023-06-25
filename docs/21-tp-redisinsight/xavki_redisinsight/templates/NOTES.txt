@@ -1,0 +1,4 @@
+Redis Insight
+
+  URL : {{ .Values.redisinsight_ingress.url }}
+  Image : {{ .Values.redisinsight_image }}

@@ -1,0 +1,10 @@
+{{- define "librarychart.configmap.tpl" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}
+data: {}
+{{- end -}}
+{{- define "librarychart.configmap" -}}
+{{- include "librarychart.util.merge" (append . "librarychart.configmap.tpl") -}}
+{{- end -}}

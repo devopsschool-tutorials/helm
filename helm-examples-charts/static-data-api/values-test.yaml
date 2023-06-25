@@ -1,0 +1,33 @@
+# Default values for static-data-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+name: static-data-api
+namespace: dev
+
+deployment:
+  replicas: 1
+  image: "myregistry/static-data-api:1.1.1-SNAPSHOT"
+  imagePullPolicy: "Always"
+  imagePullSecrets: "regcred"
+
+  env:
+    SPR_PROFILE: "dev"
+    PIPPO: "no"
+
+  resources:
+    limits:
+      cpu: 1
+      memory: 512Mi
+    requests:
+      cpu: 500m
+      memory: 128Mi
+
+  additionalPorts:
+    - containerPort: 9000
+      name: debug
+      
+service:
+  scrapeable: "true"
+
+linkerd:
+  enabled: "true"

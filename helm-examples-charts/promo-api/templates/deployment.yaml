@@ -1,0 +1,10 @@
+{{- include "librarychart.deployment" (list . "promo-api.deployment") -}}
+{{- define "promo-api.deployment" -}}
+spec:
+  template:
+    metadata:
+      annotations:
+        ci-last-build: 2020-06-05_09:53:45
+        ci-last-commit: 5720aead493d3af2eab65017c93a289c580356db
+        ci-source-branch: NPPL-3820
+{{- end -}}

@@ -1,0 +1,5 @@
+XAVKI API :
+
+  image: {{ .Values.api_image }}
+  url: {{ .Values.api_ingress.url | default "None" }}
+

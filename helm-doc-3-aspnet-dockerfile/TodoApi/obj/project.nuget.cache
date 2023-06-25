@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "4riPHzq8uHMfbJ46yUKd12zpoRT9w1CDDTn33TIxVKUAy7f/JPy5Ie26lSo+jyE9oiNjhm+zBgPKsxlETW6TlA==",
+  "success": true,
+  "projectFilePath": "/Users/anacozma/Work/helm-tutorial/TodoApi/TodoApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/anacozma/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/anacozma/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/anacozma/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/anacozma/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/anacozma/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/anacozma/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,29 @@
+
+
+# Values that are equivalent to False
+emptyString: ""
+zero: 0
+emptyDict1: {}
+emptyDict2:
+emptyArray: []
+booleanFalse: False
+
+
+# Values that are equivalent to True
+nonEmptyString: "Hi I am a string"
+nonZero: 42
+nonEmptyDict: # A dictionary with some (even empty keys)
+   key: ""
+nonEmptyList:
+  - listEntry
+booleanTrue: True
+
+stringFalse: "False"
+stringZero: "0"
+
+
+
+redis:
+  enabled: true
+
+  existingSecretName: ""
