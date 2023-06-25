@@ -1,4 +1,4 @@
-# PluralSight Packaging applications with Helm for Kubernetes
+# Packaging applications with Helm for Kubernetes
  
 Please follow instructions in module : Installing a Local Kubernetes Cluster with Helm
 
